@@ -16,6 +16,7 @@
 (projectile-mode t)
 ;; Show projectile lists by most recently active
 (setq projectile-sort-order (quote recently-active))
+(projectile-global-mode)
 
 (setq ido-decorations (quote ("\n↪ "     "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 
@@ -179,6 +180,13 @@
   "vs" 'split-window-right
   "hs" 'split-window-below
   "x" 'smex)
+
+(define-key evil-normal-state-map (kbd "C-k") (lambda ()
+                                                (interactive)
+                                                (evil-scroll-up nil)))
+(define-key evil-normal-state-map (kbd "C-j") (lambda ()
+                                                (interactive)
+                                                (evil-scroll-down nil)))
 
 ;; =============================================================================
 ;; Evil Packages
@@ -349,8 +357,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-hl-line-mode t)
 (set-face-background hl-line-face "gray10")
 
-;; Make lines longer than 80 highlighted
-(setq whitespace-line-column 80) ;; limit line length
+;; Make lines longer than 120 highlighted
+(setq whitespace-line-column 120) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 (global-whitespace-mode t)
 
@@ -464,6 +472,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (require 'elixir-mode)
 (add-to-list 'load-path "~/.emacs.d/vendor/alchemist.el")
 (require 'alchemist)
+(setq alchemist-mix-command "bin/mix")
 
 ;; (add-to-list 'elixir-mode-hook
 ;;   (defun auto-activate-ruby-end-mode-for-elixir-mode ()
@@ -702,6 +711,11 @@ one more than the current position."
 
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
 (load custom-file)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 (provide 'anything-bundle)
 
