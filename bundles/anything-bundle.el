@@ -8,7 +8,7 @@
 (setq make-backup-files nil)
 (menu-bar-mode -1)
 
-(smex-initialize)
+;(smex-initialize)
 ;(ido-hacks 1)
 (require 'projectile)
 (setq projectile-enable-caching t)
@@ -115,9 +115,11 @@
 ;; Evil
 ;; =============================================================================
 
-(load "~/.emacs.d/vendor/osx-clipboard-mode/osx-clipboard.el")
-(osx-clipboard-mode +1)
-
+;(load "~/.emacs.d/vendor/osx-clipboard-mode/osx-clipboard.el")
+;(osx-clipboard-mode +1)
+;(setq x-select-enable-clipboard t)
+;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(xclip-mode 1)
 (require 'evil)
 (evil-mode 1)
 (global-evil-visualstar-mode 1)
