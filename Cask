@@ -31,3 +31,4 @@
 (depends-on "emmet-mode")
 (depends-on "gist")
 (depends-on "xclip")
+(depends-on "scala-mode2")
